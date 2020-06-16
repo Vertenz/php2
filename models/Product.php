@@ -1,5 +1,5 @@
 <?php
-namespace models;
+namespace app\models;
 
 
 class Product extends Model
@@ -12,7 +12,7 @@ class Product extends Model
 
     public function getTableName(): string
     {
-        return "products";
+        return "product";
     }
 
     /**
