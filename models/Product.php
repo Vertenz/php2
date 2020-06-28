@@ -1,100 +1,40 @@
 <?php
+
 namespace app\models;
 
 
-class Product extends Model
-{
-    protected $id;
-    protected $name;
-    protected $description;
-    protected $price;
-    protected $category_id;
+class Product extends Record {
+    public $id;
+    public $name;
+    public $price;
+    public $descriptions;
+    public $type;
+    public $view;
+    public $hrefPreview;
+    public $hrefFull;
+    public $quantity;
 
-    public function getTableName(): string
+
+
+
+    public function __construct($id = null, $name = null, $price = null, $descriptions = null, $type = null, $view = 0,$hrefPreview = null, $hrefFull = null, $quantity = null)
+    {
+        parent::__construct();
+        $this->id = (int) $id;
+        $this->name = (string) $name;
+        $this->price = (int) $price;
+        $this->descriptions = (string) $descriptions;
+        $this->type = (string) $type;
+        $this->view = (int) $view;
+        $this->hrefPreview = (string) $hrefPreview;
+        $this->hrefFull = (string) $hrefFull;
+        $this->quantity = (int) $quantity;
+
+    }
+
+    public static function getTableName(): string
     {
         return "product";
     }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param mixed $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCategoryId():int
-    {
-        return $this->category_id;
-    }
-
-    /**
-     * @param mixed $category_id
-     */
-    public function setCategoryId($category_id)
-    {
-        $this->category_id = $category_id;
-        return $this;
-    }
-
 
 }

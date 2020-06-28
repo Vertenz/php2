@@ -10,7 +10,7 @@ class Db {
         'driver' => 'mysql',
         'host' => 'localhost',
         'login' => 'root',
-        'password' => '',
+        'password' => 'VvladmirRwh10',
         'database' => 'application_db',
         'charset' => 'utf8',
     ];
@@ -40,6 +40,10 @@ class Db {
         return $pdoStatement;
     }
 
+    public function getLastInsertId() {
+        return $this->getConnection()->lastInsertId();
+    }
+
     public function execute(string $sql, array $params = []) {
         return $this->query($sql, $params)->rowCount();
     }
@@ -51,6 +55,14 @@ class Db {
     public function queryAll(string $sql, array $params = []) {
         return $this->query($sql, $params)->fetchAll();
     }
+
+    public function queryObject($className, string $sql, array $params = [])
+    {
+        $pdoStatement = $this->query($sql, $params);
+        $pdoStatement->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $className);
+        return $pdoStatement->fetchAll();
+    }
+
 
     private function buildDsnString() {
         return sprintf(
